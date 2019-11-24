@@ -1,6 +1,10 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+
+const minSecAngle = math.pi / 30;
+const hourAngle = math.pi / 12;
 
 class ClockPage extends StatefulWidget {
   @override
@@ -54,18 +58,84 @@ class _ClockPageState extends State<ClockPage> {
         ),
         child: AspectRatio(
           aspectRatio: 2,
-          child: Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey[200],
-                  blurRadius: 50,
-                  spreadRadius: 10,
-                ),
-              ],
+          child: Center(
+            child: Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey[200],
+                    blurRadius: 50,
+                    spreadRadius: 10,
+                  ),
+                ],
+              ),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Transform.rotate(
+                    angle: _now.second * minSecAngle,
+                    alignment: Alignment.center,
+                    child: Divider(
+                      color: Colors.grey[100],
+                      height: 20,
+                      endIndent: 185,
+                      indent: 100,
+                      thickness: 2,
+                    ),
+                  ),
+                  Transform.rotate(
+                    angle: _now.hour * hourAngle,
+                    alignment: Alignment.center,
+                    child: Divider(
+                      color: Colors.red,
+                      height: 20,
+                      endIndent: 185,
+                      indent: 100,
+                      thickness: 2,
+                    ),
+                  ),
+                  Transform.rotate(
+                    angle: _now.minute * minSecAngle,
+                    alignment: Alignment.center,
+                    child: Divider(
+                      color: Colors.black,
+                      height: 20,
+                      endIndent: 185,
+                      indent: 120,
+                      thickness: 2,
+                    ),
+                  ),
+                  Transform.rotate(
+                    angle: _now.hour * hourAngle,
+                    alignment: Alignment.center,
+                    child: Divider(
+                      color: Colors.black,
+                      height: 20,
+                      endIndent: 185,
+                      indent: 120,
+                      thickness: 2,
+                    ),
+                  ),
+                  Container(
+                    width: 5,
+                    height: 5,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey[200],
+                          spreadRadius: 10,
+                          blurRadius: 10,
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

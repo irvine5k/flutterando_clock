@@ -26,10 +26,49 @@ class _ClockPageState extends State<ClockPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [],
+        children: [
+          buildCircularClock(),
+        ],
+      ),
+    );
+  }
+
+  AspectRatio buildCircularClock() {
+    return AspectRatio(
+      aspectRatio: 1.5,
+      child: Container(
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey[200],
+              blurRadius: 50,
+              spreadRadius: 10,
+            ),
+          ],
+        ),
+        child: AspectRatio(
+          aspectRatio: 2,
+          child: Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey[200],
+                  blurRadius: 50,
+                  spreadRadius: 10,
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
